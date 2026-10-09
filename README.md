@@ -106,6 +106,112 @@ Para executar os testes via terminal:
 
 dotnet test
 
+
+## ⚙️ Configuração e Execução do Projeto
+
+Pré-requisitos:
+
+.NET 8 SDK instalado.
+
+MongoDB Community Server em execução localmente na porta padrão (localhost:27017).
+
+# Restaurar dependências
+
+dotnet restore
+
+# Compilar e iniciar a API
+
+dotnet run --project CatalogoJogosApi
+
+
+---
+
+## 💡 Exemplos Sugeridos de Payload e Testes
+
+Para facilitar a avaliação da banca e os testes das rotas via Swagger, seguem exemplos com dados completos para cada operação:
+
+### 1. Cadastro de Jogos (`POST /api/jogos`)
+
+**Exemplo 1 (PlayStation 3):**
+```json
+{
+  "titulo": "Gran Turismo 6",
+  "plataforma": "PlayStation 3",
+  "genero": "Corrida",
+  "preco": 120.50,
+  "anoLancamento": 2013,
+  "estoque": 15
+}
+```
+
+Exemplo 2 (PlayStation 3 - Preço Menor):
+
+```JSON
+{
+  "titulo": "God of War III",
+  "plataforma": "PlayStation 3",
+  "genero": "Ação",
+  "preco": 80.00,
+  "anoLancamento": 2010,
+  "estoque": 10
+}
+Exemplo 3 (Xbox 360):
+```
+```JSON
+{
+  "titulo": "Halo 3",
+  "plataforma": "Xbox 360",
+  "genero": "FPS",
+  "preco": 95.00,
+  "anoLancamento": 2007,
+  "estoque": 5
+}
+```
+2. Atualização de Dados (PUT /api/jogos/{id})
+Parâmetro de Rota (id): ID gerado no cadastro (ex.: 673f8e5d0a1b2c3d4e5f6a7b)
+
+Corpo da Requisição (Request Body):
+
+```JSON
+{
+  "titulo": "Gran Turismo 6 - Edição de Colecionador",
+  "plataforma": "PlayStation 3",
+  "genero": "Corrida",
+  "preco": 149.90,
+  "anoLancamento": 2013,
+  "estoque": 8
+}
+```
+3. Busca com Filtros Compostos (GET /api/jogos/busca)
+Cenário de Teste: Filtrar títulos de PlayStation 3 que custem até R$ 100,00.
+
+Parâmetros da Query:
+
+plataforma: PlayStation 3
+
+precoMaximo: 100
+
+Resultado Esperado: Retorna apenas o God of War III, excluindo o Gran Turismo 6 pelo critério de preço.
+
+4. Relatório Agregado de Inventário (GET /api/jogos/relatorio-estoque)
+Parâmetros: Nenhum (agregação global por plataforma).
+
+Estrutura de Retorno:
+
+```JSON
+[
+  {
+    "plataforma": "PlayStation 3",
+    "totalTitulos": 2,
+    "valorTotalInventario": 2607.50
+  },
+  {
+    "plataforma": "Xbox 360",
+    "totalTitulos": 1,
+    "valorTotalInventario": 475.00
+  }
+]
+```
 ## 👥 Membros do Grupo
 
 Geovanne Coneglian Passos — RM562673
