@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Itens de Solução/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="../CatalogoJogosApi.UnitTests/CatalogoJogosApi.UnitTests.csproj" />
+  <Project Path="CatalogoJogosApi.csproj" />
+</Solution>
